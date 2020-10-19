@@ -1,0 +1,70 @@
+.main-wrapper {
+  background-color: #FFF;
+}
+
+.board {
+  margin-top: 30px;
+  margin-left: 200px;
+}
+
+table {
+  border-collapse: collapse;
+  border: solid 2px orange;/*表全体を線で囲う*/
+}
+
+table td {
+  height: 100px;
+  width: 100px;
+  text-align: center;
+  font-size: 50px;
+}
+
+/* table th, table td {
+} */
+
+.command-btn {
+  text-align: center;
+  color: #FFF;
+  background-color: #5dca88;
+  cursor: pointer;
+  box-shadow: 0 7px #1a7940;
+}
+
+.command-btn:active {
+  position: relative;
+  top: 7px;
+  box-shadow: none;
+}
+
+.up {
+  width: 100px;
+  height: 120px;
+  margin-top: 50px;
+  margin-left: 350px;
+}
+
+.left {
+  width: 120px;
+  height: 100px;
+  margin-left: 100px;
+  display: inline-box;
+}
+
+.right {
+  width: 120px;
+  height: 100px;
+  margin-left: 350px;
+  display: inline-box;
+}
+
+.down {
+  width: 100px;
+  height: 120px;
+  margin-left: 350px;
+  margin-bottom: 50px;
+}
+
+.img_up {
+  width: 100px;
+  height: 120px;
+}
