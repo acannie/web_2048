@@ -43,23 +43,23 @@ class Game extends React.Component {
                 </div>
                 <div className="command-btn up">
                     <a href="#" onClick={this.handleClickArrowUp}>
-                        <img src="mark_arrow_up.png" className="img_up" />
+                        <img src="mark_arrow_up.png" className="cursor-btn" />
                     </a>
                 </div>
                 <br />
                 <div className="command-btn left">
                     <a href="#" onClick={this.handleClickArrowLeft}>
-                        <img src="mark_arrow_left.png" className="img_up" />
+                        <img src="mark_arrow_left.png" className="cursor-btn" />
                     </a>
                 </div>
                 <div className="command-btn right">
                     <a href="#" onClick={this.handleClickArrowRight}>
-                        <img src="mark_arrow_right.png" className="img_up" />
+                        <img src="mark_arrow_right.png" className="cursor-btn" />
                     </a>
                 </div>
                 <div className="command-btn down">
                     <a href="#" onClick={this.handleClickArrowDown}>
-                        <img src="mark_arrow_down.png" className="img_up" />
+                        <img src="mark_arrow_down.png" className="cursor-btn" />
                     </a>
                 </div>
             </React.Fragment>
@@ -131,7 +131,7 @@ class Game extends React.Component {
                     margin-bottom: 50px;
                 }
 
-                .img_up {
+                .cursor-btn {
                     width: 100px;
                     height: 120px;
                 }
