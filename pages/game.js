@@ -5,10 +5,10 @@ class Game extends React.Component {
         super(props);
         this.state = {
             nums: [
-                [2,0,0,0],
-                [0,0,0,0],
-                [0,0,0,0],
-                [0,0,0,0]
+                [2, 0, 0, 0],
+                [0, 0, 0, 0],
+                [0, 0, 0, 0],
+                [0, 0, 0, 0]
             ],
             N: 4
         };
@@ -23,7 +23,7 @@ class Game extends React.Component {
         return (
             <div><React.Fragment>
                 <HeadSetting />
-                <div className="main-wrapper board">
+                <div className="board">
 
                     <table border="2">
                         {this.state.nums.map((row) => {
@@ -65,9 +65,6 @@ class Game extends React.Component {
             </React.Fragment>
 
                 <style jsx>{`
-                .main-wrapper {
-                    background-color: #FFF;
-                }
     
                 .board {
                     margin-top: 30px;
@@ -76,7 +73,7 @@ class Game extends React.Component {
                 
                 table {
                     border-collapse: collapse;
-                    border: solid 2px orange;/*表全体を線で囲う*/
+                    border: solid 2px orange; /*表全体を線で囲う*/
                 }
     
                 table td {
@@ -86,8 +83,8 @@ class Game extends React.Component {
                     font-size: 50px;
                 }
     
-                table th, table td {
-                }
+                // table th {
+                // }
 
                 .command-btn {
                     text-align: center;
@@ -141,7 +138,6 @@ class Game extends React.Component {
     }
 
     generateNewNum(newNums) {
-        // let numsCpy = this.state.nums.slice(0, this.state.nums.length);
         let numsCpy = newNums.slice(0, this.state.nums.length);
 
         const newNum = (Math.floor(Math.random() * 2) + 1) * 2; // 2 or 4
@@ -167,6 +163,7 @@ class Game extends React.Component {
             [0, 0, 0, 0],
             [0, 0, 0, 0],
         ];
+        let newMovedFlg = false;
 
         for (let j = 0; j < this.state.N; j++) {
             let tmp1 = new Array();
@@ -177,28 +174,36 @@ class Game extends React.Component {
                 }
             }
 
-            let tmp3 = new Array();
+            let tmp2 = new Array();
             while (tmp1.length !== 0) {
-                let tmp2 = tmp1[0];
-                tmp1.shift();
-
-                if (tmp1.length !== 0 && tmp2 === tmp1[0]) {
-                    tmp2 *= 2;
+                if (tmp1.length > 0 && tmp1[0] === tmp1[1]) {
+                    tmp2.push(tmp1[0] * 2);
                     tmp1.shift();
+                } else {
+                    tmp2.push(tmp1[0]);
                 }
-
-                tmp3.push(tmp2);
+                tmp1.shift();
             }
 
-            let tmp3_size = tmp3.length;
+            let sizeOfTmp2 = tmp2.length;
             newNums.push(new Array());
-            for (let i = 0; i < tmp3_size; i++) {
-                newNums[i][j] = tmp3[0];
-                tmp3.shift();
+            for (let i = 0; i < sizeOfTmp2; i++) {
+                newNums[i][j] = tmp2[0];
+                tmp2.shift();
             }
+
+            // diff check
+            for (let i = 0; i < this.state.N; i++) {
+                if (this.state.nums[i][j] !== newNums[i][j]) {
+                    newMovedFlg = true;
+                }
+            }
+
         }
         this.setState({ nums: newNums });
-        this.generateNewNum(newNums);
+        if (newMovedFlg) {
+            this.generateNewNum(newNums);
+        }
     }
 
     handleClickArrowLeft() {
@@ -208,6 +213,7 @@ class Game extends React.Component {
             [0, 0, 0, 0],
             [0, 0, 0, 0],
         ];
+        let newMovedFlg = false;
 
         for (let i = 0; i < this.state.N; i++) {
             let tmp1 = new Array();
@@ -218,29 +224,36 @@ class Game extends React.Component {
                 }
             }
 
-            let tmp3 = new Array();
+            let tmp2 = new Array();
             while (tmp1.length !== 0) {
-                let tmp2 = tmp1[0];
-                tmp1.shift();
-
-                if (tmp1.length !== 0 && tmp2 === tmp1[0]) {
-                    tmp2 *= 2;
+                if (tmp1.length > 0 && tmp1[0] === tmp1[1]) {
+                    tmp2.push(tmp1[0] * 2);
                     tmp1.shift();
+                } else {
+                    tmp2.push(tmp1[0]);
                 }
-
-                tmp3.push(tmp2);
+                tmp1.shift();
             }
 
-            let tmp3_size = tmp3.length;
+            let sizeOfTmp2 = tmp2.length;
             newNums.push(new Array());
-            for (let j = 0; j < tmp3_size; j++) {
-                newNums[i][j] = tmp3[0];
-                tmp3.shift();
+            for (let j = 0; j < sizeOfTmp2; j++) {
+                newNums[i][j] = tmp2[0];
+                tmp2.shift();
             }
+
+            // diff check
+            for (let j = 0; j < this.state.N; j++) {
+                if (this.state.nums[i][j] !== newNums[i][j]) {
+                    newMovedFlg = true;
+                }
+            }
+
         }
         this.setState({ nums: newNums });
-        this.generateNewNum(newNums);
-
+        if (newMovedFlg) {
+            this.generateNewNum(newNums);
+        }
     }
 
     handleClickArrowRight() {
@@ -250,6 +263,7 @@ class Game extends React.Component {
             [0, 0, 0, 0],
             [0, 0, 0, 0],
         ];
+        let newMovedFlg = false;
 
         for (let i = 0; i < this.state.N; i++) {
             let tmp1 = new Array();
@@ -260,28 +274,36 @@ class Game extends React.Component {
                 }
             }
 
-            let tmp3 = new Array();
+            let tmp2 = new Array();
             while (tmp1.length !== 0) {
-                let tmp2 = tmp1[0];
-                tmp1.shift();
-
-                if (tmp1.length !== 0 && tmp2 === tmp1[0]) {
-                    tmp2 *= 2;
+                if (tmp1.length > 0 && tmp1[0] === tmp1[1]) {
+                    tmp2.push(tmp1[0] * 2);
                     tmp1.shift();
+                } else {
+                    tmp2.push(tmp1[0]);
                 }
-
-                tmp3.push(tmp2);
+                tmp1.shift();
             }
 
-            let tmp3_size = tmp3.length;
+            let sizeOfTmp2 = tmp2.length;
             newNums.push(new Array());
-            for (let j = 0; j < tmp3_size; j++) {
-                newNums[i][this.state.N - j - 1] = tmp3[0];
-                tmp3.shift();
+            for (let j = 0; j < sizeOfTmp2; j++) {
+                newNums[i][this.state.N - j - 1] = tmp2[0];
+                tmp2.shift();
             }
+
+            // diff check
+            for (let j = 0; j < this.state.N; j++) {
+                if (this.state.nums[i][this.state.N - j - 1] !== newNums[i][this.state.N - j - 1]) {
+                    newMovedFlg = true;
+                }
+            }
+
         }
         this.setState({ nums: newNums });
-        this.generateNewNum(newNums);
+        if (newMovedFlg) {
+            this.generateNewNum(newNums);
+        }
     }
 
     handleClickArrowDown() {
@@ -291,6 +313,7 @@ class Game extends React.Component {
             [0, 0, 0, 0],
             [0, 0, 0, 0],
         ];
+        let newMovedFlg = false;
 
         for (let j = 0; j < this.state.N; j++) {
             let tmp1 = new Array();
@@ -301,28 +324,36 @@ class Game extends React.Component {
                 }
             }
 
-            let tmp3 = new Array();
+            let tmp2 = new Array();
             while (tmp1.length !== 0) {
-                let tmp2 = tmp1[0];
-                tmp1.shift();
-
-                if (tmp1.length !== 0 && tmp2 === tmp1[0]) {
-                    tmp2 *= 2;
+                if (tmp1.length > 0 && tmp1[0] === tmp1[1]) {
+                    tmp2.push(tmp1[0] * 2);
                     tmp1.shift();
+                } else {
+                    tmp2.push(tmp1[0]);
                 }
-
-                tmp3.push(tmp2);
+                tmp1.shift();
             }
 
-            let tmp3_size = tmp3.length;
+            let sizeOfTmp2 = tmp2.length;
             newNums.push(new Array());
-            for (let i = 0; i < tmp3_size; i++) {
-                newNums[this.state.N - i - 1][j] = tmp3[0];
-                tmp3.shift();
+            for (let i = 0; i < sizeOfTmp2; i++) {
+                newNums[this.state.N - i - 1][j] = tmp2[0];
+                tmp2.shift();
             }
+
+            // diff check
+            for (let i = 0; i < this.state.N; i++) {
+                if (this.state.nums[this.state.N - i - 1][j] !== newNums[this.state.N - i - 1][j]) {
+                    newMovedFlg = true;
+                }
+            }
+
         }
         this.setState({ nums: newNums });
-        this.generateNewNum(newNums);
+        if (newMovedFlg) {
+            this.generateNewNum(newNums);
+        }
     }
 }
 
