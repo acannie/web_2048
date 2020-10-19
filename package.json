@@ -1,22 +1,15 @@
 {
   "name": "web_2048",
-  "version": "1.0.0",
-  "description": "",
-  "main": "main.js",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "next dev",
     "build": "next build",
     "start": "next start"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/acannie/web_2048.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/acannie/web_2048/issues"
-  },
-  "homepage": "https://github.com/acannie/web_2048#readme"
+  "dependencies": {
+    "next": "9.5.5",
+    "react": "16.14.0",
+    "react-dom": "16.14.0"
+  }
 }
