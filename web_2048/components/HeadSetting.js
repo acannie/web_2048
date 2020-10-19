@@ -3,7 +3,6 @@ import Link from "next/link"
 
 const HeadSetting = (props) => {
   const { title, children } = props
-  const siteTitle = "笹岡板金工業所"
   return (
     <Head>
       <title>2048 on web</title>
